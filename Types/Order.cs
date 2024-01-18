@@ -1,6 +1,8 @@
-﻿namespace DeliveryApi.Types
+﻿using DeliveryApi.Services;
+
+namespace DeliveryApi.Types
 {
-    public class Order
+    public class Order : IHasId
     {
         public ulong Id { get; set; }
         public string SenderCity { get; set; }

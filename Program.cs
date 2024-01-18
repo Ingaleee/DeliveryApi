@@ -1,4 +1,5 @@
 using DeliveryApi.Domain;
+using DeliveryApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     var sqlVersion = ServerVersion.AutoDetect(dbConnection);
     options.UseMySql(dbConnection, sqlVersion);
 });
+builder.Services.AddTransient<IDomainProvider, DomainProvider>();
 
 var app = builder.Build();
 
