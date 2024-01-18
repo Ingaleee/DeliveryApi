@@ -14,7 +14,7 @@ namespace DeliveryApi.Domain.Configurations
             builder.Property(e => e.RecipientCity).IsRequired();
             builder.Property(e => e.RecipientAddress).IsRequired();
             builder.Property(e => e.Weight).IsRequired();
-            builder.Property(e => e.PickupDate).IsRequired();
+            builder.Property(e => e.PickupDateUtc).IsRequired();
         }
     }
 }

@@ -5,6 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSwaggerDocument();
+
+}
+
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     var dbConnection = builder.Configuration.GetConnectionString("DbConnection");
@@ -12,8 +18,15 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseMySql(dbConnection, sqlVersion);
 });
 builder.Services.AddTransient<IDomainProvider, DomainProvider>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.UseOpenApi();
+app.UseSwaggerUi();
+
+app.UseRouting();
+app.UseEndpoints(b => b.MapControllers());
+
 app.Run();

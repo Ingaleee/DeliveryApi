@@ -1,4 +1,5 @@
-﻿using DeliveryApi.Services;
+﻿using System.ComponentModel.DataAnnotations;
+using DeliveryApi.Services;
 
 namespace DeliveryApi.Types
 {
@@ -10,6 +11,6 @@ namespace DeliveryApi.Types
         public string RecipientCity { get; set; }
         public string RecipientAddress { get; set; }
         public decimal Weight { get; set; }
-        public DateTime PickupDate { get; set; }
+        public DateTime PickupDateUtc { get; set; }
     }
 }
