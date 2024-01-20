@@ -19,12 +19,14 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 });
 builder.Services.AddTransient<IDomainProvider, DomainProvider>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddCors();
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseOpenApi();
 app.UseSwaggerUi();
+app.UseCors(_ => _.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 
 app.UseRouting();
 app.UseEndpoints(b => b.MapControllers());
